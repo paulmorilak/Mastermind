@@ -19,9 +19,9 @@ namespace Mastermind
                 Console.WriteLine("Try to guess the 4 digit code! Use only numbers 1-6!");
                 UserIn = Console.ReadLine();
                 game1.SubmitAnswer(UserIn);
-               // game1.LoseTry();
+              
              }
-            Console.WriteLine("You Lose!");
+            Console.WriteLine("Game Over");
             Console.ReadLine();
 
         }
@@ -34,8 +34,8 @@ namespace Mastermind
         private int[] answer = new int[4];
         private int tries = 10;
         private bool valid = false;
-        private int plus = 0;
-        private int minus = 0;
+        private int plus;
+        private int minus;
         
        
         public Game()
@@ -43,16 +43,15 @@ namespace Mastermind
             
             Random randomNumber = new Random();
 
-            // remove 
-            Console.Write("Code:");
+            
             
             for (int i = 0; i <= 3; i++)
             {
 
                 code[i] = randomNumber.Next(1, 6);
 
-                // remove 
-                Console.Write(code[i].ToString());
+                
+                
             }
 
             
@@ -72,7 +71,7 @@ namespace Mastermind
                     answer[i] = (int)Char.GetNumericValue(ans[i]);
                     if (answer[i] < 1 || answer[i] > 6)
                     {
-                        Console.WriteLine("Enter numbers from 1 - 6 only");
+                        
                         valid = false;
                     }
                 }
@@ -87,7 +86,10 @@ namespace Mastermind
             {
                 CheckAnswer();
             }
-
+            else
+            {
+                Console.WriteLine("Enter numbers from 1 - 6 only");
+            }
 
         }
 
@@ -160,6 +162,8 @@ namespace Mastermind
                 Console.WriteLine("Welcome! Today's combination to Planet Druidia's planetary shield is:");
                 Console.WriteLine("1 - 2 - 3 - 4 - 5");
                 Console.WriteLine("Have a nice day, King Roland!");
+                Console.WriteLine("You Win!!!");
+                tries = 0;
             }
         }
 
@@ -167,12 +171,11 @@ namespace Mastermind
         {
             if (tries <=1)
             {
-                Console.WriteLine("Your hacking attempts have been jammed by Lone Starr's raspberry jam.");
+                Console.WriteLine("Your hacking attempts have been jammed by Lone Starr's raspberry jam. You Lose.");
             }
-            else
-            {
+            
                 tries -= 1;
-            }
+            
             
         }
     }
